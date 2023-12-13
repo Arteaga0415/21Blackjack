@@ -17,6 +17,8 @@ $(document).ready(function() {
     let gameStatus = "new"; 
 
     // The first function that must be called is to create a new deck
+    //This function to create the deck was mostly taken from 
+    //kenny Yip, [kenny Yip Coding]. (2022, March 20). Code Blackjack with JavaScript HTML CSS. https://www.youtube.com/watch?v=bMYCWccL-3U
     function createDeck() {
         let deck = [];
         //We are going to create to arrays to populate the deck
@@ -36,6 +38,8 @@ $(document).ready(function() {
     }
 
     // Shufle the deck
+    //This function to shuffle the deck was mostly taken from 
+    //kenny Yip, [kenny Yip Coding]. (2022, March 20). Code Blackjack with JavaScript HTML CSS. https://www.youtube.com/watch?v=bMYCWccL-3U
     function shuffleDeck(deck) {
         for(let i = 0; i < deck.length; i++){
             //generate a random number between 0-51
@@ -69,13 +73,15 @@ $(document).ready(function() {
         dealerHand.push(secondCard);
 
         //Create the element for the image of the new card, using jQuery 
-        //from "var newImage" to ".append(newImage);" were mostly taken from chatGPT.
+        //This logic to insert the image was taken from chatGPT.
         var newImage = $('<img>', {
             id: "dealer-card",
-            src: 'cards/' + secondCard  
+            src: 'cards/' + secondCard,
+            style: "display: none;"
         });
         // Insert the new image inside the #dealer-cards div
         $('#dealer-cards').append(newImage);
+        newImage.fadeIn(1000);
 
         console.log('Hidden: ', hiddenCard);
         console.log('Dealer sum: ', dealerSum);
@@ -89,19 +95,20 @@ $(document).ready(function() {
             playerAceCount += checkAce(playerCard);
             playerHand.push(playerCard);
             //Create the element for the image of the new card, using jQuery 
-            //from "var newImage" to ".append(newImage);" were mostly taken from chatGPT.
+            //This logic to insert the image was taken from chatGPT.
             var newImage = $('<img>', {
-                src: 'cards/' + playerCard  
+                src: 'cards/' + playerCard,
+                style: "display: none;"
             });
             // Insert the new image inside the id="player-cards" div
             $('#player-cards').append(newImage);
-
-            //Check for a black jack
-            if (playerSum === 21) {
-                //call for the end of the game 
-                $('#hidden-card').attr('src', 'cards/' + hiddenCard);
-                endGame();
-            }
+            newImage.fadeIn(1000);
+        }
+        //Check for a black jack
+        if (playerSum === 21) {
+            //call for the end of the game 
+            $('#hidden-card').attr('src', 'cards/' + hiddenCard);
+            endGame();
         }
         console.log('player sum: ', playerSum);
         console.log('Player Ace Count: ', playerAceCount);
@@ -146,13 +153,15 @@ $(document).ready(function() {
             playerAceCount += checkAce(playerCard);
             playerHand.push(playerCard);
             //Create the element for the image of the new card, using jQuery 
-            //from "var newImage" to ".append(newImage);" were mostly taken from chatGPT.
+            //This logic to insert the image was taken from chatGPT.
             var newImage = $('<img>', {
                 id: "player-card",
-                src: 'cards/' + playerCard  
+                src: 'cards/' + playerCard,
+                style: "display: none;"
             });
             // Insert the new image inside the id="player-cards" div
             $('#player-cards').append(newImage);
+            newImage.fadeIn(1000);
 
             //check if  the sum is more than 21 or if it is 21 to end the game. 
             if (playerSum == 21) {
@@ -191,13 +200,15 @@ $(document).ready(function() {
                 playerAceCount += checkAce(playerCard);
                 playerHand.push(playerCard);
                 //Create the element for the image of the new card, using jQuery 
-                //from "var newImage" to ".append(newImage);" were mostly taken from chatGPT.
+                //This logic to insert the image was taken from chatGPT.
                 var newImage = $('<img>', {
                     id: "player-card",
-                    src: 'cards/' + playerCard  
+                    src: 'cards/' + playerCard,
+                    style: "display: none;"
                 });
                 // Insert the new image inside the id="player-cards" div
                 $('#player-cards').append(newImage);
+                newImage.fadeIn(1000);
                 //Since he had double haces now he has 12 so he may bust again.
                 //we need to check that again to see if another 10 may need to be subtracted 
                 if (playerSum > 21) {
@@ -223,6 +234,15 @@ $(document).ready(function() {
         // Replace the hidden image with the actual card
         $('#hidden-card').attr('src', 'cards/' + hiddenCard);
 
+        //If condition for when the dealer has two Aces 
+        if (dealerSum > 21 && dealerAceCount > dealerAceDeducted) {
+            //logic for subtracting 10.
+            //subtract 10
+            dealerSum -= 10;
+            //add a value to the deducted aces so that it does not infinetly deducted 10 every time it pases 21 if it has an ace
+            dealerAceDeducted += 1;
+        }
+
         while (dealerSum < 17) {
             //Add the other card.
             let dealerCard = deck.pop();
@@ -231,13 +251,15 @@ $(document).ready(function() {
             dealerHand.push(dealerCard);
 
             //Create the element for the image of the new card, using jQuery 
-            //from "var newImage" to ".append(newImage);" were mostly taken from chatGPT.
+            //This logic to insert the image was taken from chatGPT.
             var newImage = $('<img>', {
                 id: "dealer-card",
-                src: 'cards/' + dealerCard  
+                src: 'cards/' + dealerCard,
+                style: "display: none;"
             });
             // Insert the new image inside the #dealer-cards div
             $('#dealer-cards').append(newImage);
+            newImage.fadeIn(1000);
 
             if (dealerSum > 21 && dealerAceCount > dealerAceDeducted) {
                 //logic for subtracting 10.
@@ -246,14 +268,6 @@ $(document).ready(function() {
                 //add a value to the deducted aces so that it does not infinetly deducted 10 every time it pases 21 if it has an ace
                 dealerAceDeducted += 1;
             }
-        }
-        //If condition for when the dealer has two Aces 
-        if (dealerSum > 21 && dealerAceCount > dealerAceDeducted) {
-            //logic for subtracting 10.
-            //subtract 10
-            dealerSum -= 10;
-            //add a value to the deducted aces so that it does not infinetly deducted 10 every time it pases 21 if it has an ace
-            dealerAceDeducted += 1;
         }
         
         console.log('Dealer sum: ', dealerSum);
@@ -330,6 +344,8 @@ $(document).ready(function() {
                 borderRadius: '10px'
             }
         }).click(function() {
+            // Make button disappear on the new game 
+            $('#btnAgain, #btnEnd').hide();  
             //Reset all the variables and clean the log
             dealerHand = [];
             playerHand = [];
@@ -357,8 +373,7 @@ $(document).ready(function() {
             console.clear();
             //call for a new game
             newGame();
-            // Make button disappear on the new game 
-            $('#btnAgain, #btnEnd').hide();  
+            
         });
 
         // Create button 2
@@ -407,21 +422,4 @@ $(document).ready(function() {
         }); 
     }
     playGame();
-
-
-    // // Function to calculate hand value, considering Ace logic
-    // function calculateHandValue(hand) {
-    //     // ... Implement hand value calculation
-    // }
-
-    // // Function to update the UI based on game state
-    // function updateUI() {
-    //     // ... Implement UI update logic
-    // }
-
-
-    // $("#standButton").click(function() {
-    //     // ... Implement stand logic
-    // });
-
 });
