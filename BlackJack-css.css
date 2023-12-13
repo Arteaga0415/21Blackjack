@@ -1,0 +1,47 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    color: #FFF0F5;
+    background-image: url('BackGround.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
+#Dealer img {
+    height: 175px;
+    width: 125px;
+    margin: 2px;
+}
+
+#Player img {
+    height: 175px;
+    width: 125px;
+    margin: 2px;
+}
+
+#hit {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+#stay {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+#scoreContainer {
+    position: fixed; /* Fixed position */
+    top: 80px; /* 10px from the top */
+    right: 150px; /* 10px from the right */
+    color: black;
+    background-color: white; /* Background color */
+    padding: 15px; /* Some padding */
+    border: 3px solid #000; /* A border */
+    border-radius: 10px; /* Rounded corners */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
