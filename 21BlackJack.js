@@ -326,6 +326,11 @@ $(document).ready(function() {
         //update the score 
         $('#playerScore').text(score);
         //Call fucntion to get options to reset the game 
+        if (score >= 0) {
+            $('#scoreContainer').css("background-color", "green")
+        } else {
+            $('#scoreContainer').css("background-color", "red")
+        }
         resetGame();
     }
 
