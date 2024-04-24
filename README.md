@@ -2,8 +2,10 @@
 
 Blackjack 21 is a classic card game where the goal is to beat the dealer by getting a count as close to 21 as possible, without going over. This implementation allows you to play multiple times and keeps track of your score throughout the session.
 
-![Gameplay Image](https://utfs.io/f/f749d6bb-8326-4aac-b4b2-d0a30abd7945-tyl9f4.jpg)
-![Gameplay Image](https://utfs.io/f/42c723d4-f446-4f27-ad00-c60461e7e384-tyl9f3.jpg)
+<p align="center">
+  <img src="https://utfs.io/f/f749d6bb-8326-4aac-b4b2-d0a30abd7945-tyl9f4.jpg" width="600" height="400" alt="Gameplay Image 1">
+  <img src="https://utfs.io/f/42c723d4-f446-4f27-ad00-c60461e7e384-tyl9f3.jpg" width="600" height="400" alt="Gameplay Image 2">
+</p>
 
 ## Features
 
