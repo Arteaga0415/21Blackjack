@@ -7,7 +7,7 @@ Blackjack 21 is a classic card game where the goal is to beat the dealer by gett
   <img src="https://utfs.io/f/f749d6bb-8326-4aac-b4b2-d0a30abd7945-tyl9f4.jpg" width="600" height="330" alt="Gameplay Image 1">
 </p>
 
-## Features
+# Features
 
 - **Unlimited Gameplay:** Enjoy endless rounds of Blackjack without restarting the game.
 - **Score Tracking:** Keep an eye on your wins and losses through an integrated scoring system.
